@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<title>Specification 0984 – Revision Hub</title>
+	<link rel="stylesheet" href="assets/style.css" />
+	<!-- Prism themes: light and dark. We'll toggle via JS by enabling/disabling links. -->
+	<link id="prism-theme-light" rel="stylesheet" href="https://unpkg.com/prismjs/themes/prism-solarizedlight.min.css" disabled>
+	<link id="prism-theme-dark" rel="stylesheet" href="https://unpkg.com/prismjs/themes/prism-one-dark.min.css">
+	<link rel="stylesheet" href="https://unpkg.com/prismjs/plugins/line-numbers/prism-line-numbers.min.css">
+	<script>
+		// Apply saved theme ASAP to prevent flash
+		(function(){
+			try{
+				var t = localStorage.getItem('y11-theme');
+				if(!t){ t = (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) ? 'light' : 'dark'; }
+				document.documentElement.setAttribute('data-theme', t);
+				// Toggle Prism theme link disabled state early
+				var l = document.getElementById('prism-theme-light');
+				var d = document.getElementById('prism-theme-dark');
+				if(l && d){ if(t==='light'){ l.disabled=false; d.disabled=true; } else { l.disabled=true; d.disabled=false; } }
+			}catch(e){}
+		})();
+	</script>
+</head>
+<body>
+	<div id="top"></div>
+	<header class="site-header">
+		<div class="container">
+			<h1>Specification 0984 – Revision Hub</h1>
+			<nav class="top-nav">
+				<a href="index.html" class="active">Home</a>
+				<a href="paper1.html">Paper 1</a>
+				<a href="paper2.html">Paper 2</a>
+				<button id="theme-toggle" type="button" title="Toggle theme">🌓 Theme</button>
+			</nav>
+		</div>
+	</header>
+
+	<main class="container">
+		<section>
+			<h2>Welcome</h2>
+			<p>
+				This site provides structured revision notes and resources for
+				<strong>Specification 0984</strong>.
+				Navigate using the menu above to access Paper 1 and Paper 2 content.
+			</p>
+		</section>
+
+		<section>
+			<h2>Overview</h2>
+			<div class="cards">
+				<article class="card">
+					<h3><a href="paper1.html">Paper 1</a></h3>
+					<p>Content for Paper 1 topics and sections.</p>
+					<p><a class="btn" href="paper1.html">Open Paper 1</a></p>
+				</article>
+
+				<article class="card">
+					<h3><a href="paper2.html">Paper 2</a></h3>
+					<p>Content for Paper 2 topics and sections.</p>
+					<p><a class="btn" href="paper2.html">Open Paper 2</a></p>
+				</article>
+			</div>
+		</section>
+	</main>
+
+	<footer class="site-footer">
+		<div class="container">
+			<p>Specification 0984 • Revision and Study Notes</p>
+		</div>
+	</footer>
+	<script src="https://unpkg.com/prismjs/prism.min.js"></script>
+	<script src="https://unpkg.com/prismjs/components/prism-python.min.js"></script>
+	<script src="https://unpkg.com/prismjs/plugins/line-numbers/prism-line-numbers.min.js"></script>
+	<script src="assets/theme.js"></script>
+</body>
+</html>
