@@ -70,6 +70,75 @@
         <li>Test data types: normal, boundary/extreme, abnormal/invalid. Use trace tables to dry‑run logic and locate errors.</li>
       </ul>
 
+  <h3>Worked examples (typical exam style)</h3>
+  <p class="small">REPEAT … UNTIL executes the body first, then checks the condition. It runs at least once.</p>
+  <pre class="line-numbers"><code class="language-none">DECLARE Counter : INTEGER
+Counter ← 5
+REPEAT
+  OUTPUT Counter
+  Counter ← Counter - 1
+UNTIL Counter = 0
+# Output: 5 4 3 2 1</code></pre>
+
+  <pre class="line-numbers"><code class="language-none">DECLARE Counter : INTEGER
+Counter ← 5
+REPEAT
+  OUTPUT Counter
+  Counter ← Counter - 1
+UNTIL Counter &lt; 0
+# Output: 5 4 3 2 1 0</code></pre>
+
+  <pre class="line-numbers"><code class="language-none"># Length and substrings (start index is 1 in the spec)
+OUTPUT(LENGTH("Cambridge IGCSE"))     # 15
+OUTPUT(LENGTH("Computer Science"))     # 16
+
+DECLARE Phrase : STRING
+Phrase ← "Programming is fun"
+OUTPUT(SUBSTRING(Phrase, 1, 11))       # Programming
+
+DECLARE Message : STRING
+Message ← "IGCSE Computer Science"
+OUTPUT(SUBSTRING(Message, 7, 8))       # Computer
+
+DECLARE Word : STRING
+Word ← "Examination"
+OUTPUT(SUBSTRING(Word, 3, 5))          # amina</code></pre>
+
+  <pre class="line-numbers"><code class="language-none"># Trace/run reasoning tips
+# 1) Where is a variable first assigned? (initialisation)
+1. DECLARE total : INTEGER
+2. DECLARE num   : INTEGER
+3. total = 0                # first assignment to 'total' is line 3
+4. REPEAT
+5.    INPUT num
+6.    total = total + num
+7. UNTIL num = 0            # condition checked here (line 7)
+8. OUTPUT total
+
+# With inputs 2, 3, 0 the output would be 5.</code></pre>
+
+  <pre class="line-numbers"><code class="language-none"># Counting loop properties
+1. DECLARE counter : INTEGER
+2. counter = 10
+3. REPEAT
+4.    counter = counter - 1  # executes 10 times
+5. UNTIL counter = 0         # final value of 'counter' is 0</code></pre>
+
+  <pre class="line-numbers"><code class="language-none"># Output position matters
+1. DECLARE counter : INTEGER
+2. counter = 10
+3. REPEAT
+4.    counter = counter - 1
+5.    OUTPUT counter         # final output: 0
+6. UNTIL counter = 0
+
+1. DECLARE counter : INTEGER
+2. counter = 10
+3. REPEAT
+4.    OUTPUT counter
+5.    counter = counter - 1  # final output: 1
+6. UNTIL counter = 0</code></pre>
+
       <a class="back-top" href="#top">Back to top</a>
     </section>
 
@@ -77,28 +146,156 @@
       <h2>8. Programming</h2>
       
       <h3>8.1 Programming concepts</h3>
-      <ul>
+  <ul>
         <li>Structures: sequence, selection (IF/ELSE, CASE), iteration (count‑controlled FOR; pre‑condition WHILE; post‑condition REPEAT‑UNTIL).</li>
         <li>Operators: arithmetic (+, −, ×, ÷, ^, MOD, DIV), relational (=, <, <=, >, >=, <>), Boolean (AND, OR, NOT).</li>
         <li>Strings: LENGTH, SUBSTRING, UPPER/LOWER, concatenation; beware indexing (0‑ or 1‑based depending on language/spec).</li>
         <li>Subroutines: procedures/functions (up to two parameters in spec examples). Use meaningful identifiers, comments, and modularisation for maintainability. Reasonable nesting depth (≤3 levels in exam).</li>
         <li>Library routines often provided: MOD, DIV, ROUND, RANDOM.</li>
       </ul>
+
+  <h4>General building blocks</h4>
+  <ul>
+    <li>Basic data types: INTEGER, REAL, CHAR, STRING, BOOLEAN</li>
+    <li>Identifiers: PascalCase letters/digits, start with a capital letter (no underscores).</li>
+    <li>Comments: <code>// comment text</code></li>
+  </ul>
+  <pre class="line-numbers"><code class="language-none">DECLARE Score : INTEGER
+DECLARE Name : STRING
+DECLARE GameOver : BOOLEAN
+
+# Literals: 5, -3, 4.0, 'X', "Hello", TRUE, FALSE
+
+CONSTANT HourlyRate ← 6.50
+Counter ← Counter + 1   # assignment (update)</code></pre>
+
+  <h4>Input / Output</h4>
+  <pre class="line-numbers"><code class="language-none">INPUT Answer
+OUTPUT "You have ", Lives, " lives left"</code></pre>
+
+  <h4>Arithmetic and integer division</h4>
+  <pre class="line-numbers"><code class="language-none">Area ← Pi * Radius ^ 2
+Q ← DIV(10, 3)   # 3 (integer quotient)
+R ← MOD(10, 3)   # 1 (remainder)</code></pre>
+
+  <h4>Relational and Boolean operators</h4>
+  <pre class="line-numbers"><code class="language-none"># Relational: =  &lt;  &lt;=  &gt;  &gt;=  &lt;&gt;
+# Boolean: AND OR NOT
+IF Mark &gt;= 50 AND Mark &lt;= 100 THEN
+  OUTPUT "Pass"
+ENDIF</code></pre>
+
+  <h4>String operations</h4>
+  <pre class="line-numbers"><code class="language-none">L ← LENGTH("Happy Days")            # 10
+OUTPUT LCASE('W')                   # 'w'
+OUTPUT UCASE("Happy")               # "HAPPY"
+OUTPUT SUBSTRING("Happy Days", 1, 5)  # "Happy"
+
+# Pseudocode functions often use 1-based indexing for SUBSTRING(start, length)
+OUTPUT UCASE("stcHris")             # "STCHRIS"</code></pre>
+
+  <h4>Other library routines</h4>
+  <pre class="line-numbers"><code class="language-none"># ROUND(x, places), RANDOM() returns a real in 0..1 (inclusive in spec)
+Throw ← ROUND(RANDOM() * 6, 0)      # 0..6 (for dice use 1..6):
+Dice  ← ROUND(RANDOM() * 5 + 1, 0)  # 1..6</code></pre>
+
+  <h4>Selection</h4>
+  <pre class="line-numbers"><code class="language-none">IF Score &gt; HighScore THEN
+  OUTPUT "New record"
+ELSE
+  OUTPUT "Try again"
+ENDIF
+
+# CASE OF … ENDCASE
+INPUT Move
+CASE OF Move
+  'W' : Position ← Position - 10
+  'E' : Position ← Position + 10
+  'A' : Position ← Position - 1
+  'D' : Position ← Position + 1
+  OTHERWISE OUTPUT "Beep"
+ENDCASE</code></pre>
+
+  <h4>Iteration</h4>
+  <pre class="line-numbers"><code class="language-none"># Count-controlled FOR … NEXT (optional STEP)
+Total ← 0
+FOR Row ← 1 TO MaxRow
+  RowTotal ← 0
+  FOR Col ← 1 TO 10
+  RowTotal ← RowTotal + Amount[Row, Col]
+  NEXT Col
+  Total ← Total + RowTotal
+NEXT Row
+
+# Pre-condition WHILE … ENDWHILE (may run 0 times)
+WHILE Number &gt; 9 DO
+    Number ← Number - 9
+ENDWHILE
+
+# Post-condition REPEAT … UNTIL (runs at least once)
+REPEAT
+    INPUT Password
+UNTIL Password = "Secret"</code></pre>
+
+  <h4>Procedures and functions</h4>
+  <pre class="line-numbers"><code class="language-none"># Procedure (no return)
+PROCEDURE DefaultLine
+    CALL Line(60)
+ENDPROCEDURE
+
+PROCEDURE Line(Size : INTEGER)
+    FOR I ← 1 TO Size
+    OUTPUT '-'
+    NEXT I
+ENDPROCEDURE
+
+# Calls:
+CALL DefaultLine
+CALL Line(10)
+
+# Function (returns one value; call inside an expression, no CALL)
+FUNCTION SumSquare(A:INTEGER, B:INTEGER) RETURNS INTEGER
+    RETURN A*A + B*B
+ENDFUNCTION
+
+OUTPUT "Sum = ", SumSquare(3, 4)   # Sum = 25</code></pre>
+  <p class="small">Parameters: in exams, procedures/functions usually have up to two parameters. Remember local vs global scope concepts.</p>
       
       <h3>8.2 Arrays</h3>
-      <ul>
+  <ul>
         <li>Use arrays to store multiple items of the same type under one name.</li>
         <li>1D arrays: index with a single subscript (first index might be 0 or 1).</li>
         <li>2D arrays: table/matrix; access with [row][column].</li>
         <li>Use variables as indexes and nested loops to traverse 2D arrays.</li>
       </ul>
+  <pre class="line-numbers"><code class="language-none"># Declare 1D / 2D (state lower/upper bounds)
+DECLARE StudentNames : ARRAY[1:30] OF STRING
+DECLARE Grid : ARRAY[1:3, 1:3] OF CHAR
+
+# Indexing / writing
+StudentNames[1] ← "Ali"
+Grid[2,3] ← 'X'
+
+# Fill with a loop
+FOR I ← 1 TO 30
+    StudentNames[I] ← ""
+NEXT I</code></pre>
       
       <h3>8.3 File handling</h3>
-      <ul>
+  <ul>
         <li>Open files in appropriate mode (read/write/append); always close after use.</li>
         <li>Read/write a single item (e.g., number) or entire lines/records.</li>
         <li>Store data for later program use (persistent storage).</li>
       </ul>
+  <pre class="line-numbers"><code class="language-none">DECLARE LineOfText : STRING
+OPENFILE "FileA.txt" FOR READ
+OPENFILE "FileB.txt" FOR WRITE
+
+READFILE "FileA.txt", LineOfText
+WRITEFILE "FileB.txt", LineOfText
+
+CLOSEFILE "FileA.txt"
+CLOSEFILE "FileB.txt"</code></pre>
 
       <a class="back-top" href="#top">Back to top</a>
     </section>
@@ -115,6 +312,15 @@
         </li>
         <li>Be able to predict the output of simple SQL queries.</li>
       </ul>
+      <pre class="line-numbers"><code class="language-none"># Example SQL
+SELECT Name, Score
+FROM   Results
+WHERE  Score &gt;= 50
+ORDER BY Score DESC;
+
+SELECT COUNT(*) AS Passed
+FROM   Results
+WHERE  Score &gt;= 50;</code></pre>
 
       <a class="back-top" href="#top">Back to top</a>
     </section>
@@ -126,6 +332,17 @@
         <li>Combine up to three inputs to produce one output in simple combinational circuits.</li>
         <li>Translate statements to logic expressions/circuits (no simplification required in the spec).</li>
       </ul>
+      <pre class="line-numbers"><code class="language-none"># Example expression and table headers
+# Q = (A AND NOT B) OR C
+A B C | Q
+0 0 0 | 0
+0 0 1 | 1
+0 1 0 | 0
+0 1 1 | 1
+1 0 0 | 1
+1 0 1 | 1
+1 1 0 | 0
+1 1 1 | 1</code></pre>
 
       <a class="back-top" href="#top">Back to top</a>
     </section>
