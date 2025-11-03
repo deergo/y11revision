@@ -50,7 +50,25 @@
 
     <section id="s7" class="section">
       <h2>7. Algorithm design and problem-solving</h2>
-      <p>Content for algorithm design and problem-solving.</p>
+      <ul>
+        <li>Development cycle: analysis → design → implementation (coding) → testing → evaluation/maintenance.</li>
+        <li>Abstraction removes detail; decomposition/top‑down design breaks a problem into smaller sub‑problems; define clear inputs/outputs for each part.</li>
+        <li>Representation: flowcharts and pseudocode to describe algorithms before coding.</li>
+        <li>Standard algorithms:
+          <ul>
+            <li>Linear search (sequential): scan until found or end.</li>
+            <li>Bubble sort: repeatedly swap adjacent out‑of‑order items until no swaps.</li>
+            <li>Totals/counting; finding max/min/average: loop through items maintaining running values.</li>
+          </ul>
+        </li>
+        <li>Validation vs verification:
+          <ul>
+            <li>Validation checks data is reasonable (range, length, type, presence/required, format, check digit).</li>
+            <li>Verification checks data is entered/transferred correctly (double entry, visual check).</li>
+          </ul>
+        </li>
+        <li>Test data types: normal, boundary/extreme, abnormal/invalid. Use trace tables to dry‑run logic and locate errors.</li>
+      </ul>
 
       <a class="back-top" href="#top">Back to top</a>
     </section>
@@ -59,27 +77,55 @@
       <h2>8. Programming</h2>
       
       <h3>8.1 Programming concepts</h3>
-      <p>Content for programming concepts.</p>
+      <ul>
+        <li>Structures: sequence, selection (IF/ELSE, CASE), iteration (count‑controlled FOR; pre‑condition WHILE; post‑condition REPEAT‑UNTIL).</li>
+        <li>Operators: arithmetic (+, −, ×, ÷, ^, MOD, DIV), relational (=, <, <=, >, >=, <>), Boolean (AND, OR, NOT).</li>
+        <li>Strings: LENGTH, SUBSTRING, UPPER/LOWER, concatenation; beware indexing (0‑ or 1‑based depending on language/spec).</li>
+        <li>Subroutines: procedures/functions (up to two parameters in spec examples). Use meaningful identifiers, comments, and modularisation for maintainability. Reasonable nesting depth (≤3 levels in exam).</li>
+        <li>Library routines often provided: MOD, DIV, ROUND, RANDOM.</li>
+      </ul>
       
       <h3>8.2 Arrays</h3>
-      <p>Content for arrays.</p>
+      <ul>
+        <li>Use arrays to store multiple items of the same type under one name.</li>
+        <li>1D arrays: index with a single subscript (first index might be 0 or 1).</li>
+        <li>2D arrays: table/matrix; access with [row][column].</li>
+        <li>Use variables as indexes and nested loops to traverse 2D arrays.</li>
+      </ul>
       
       <h3>8.3 File handling</h3>
-      <p>Content for file handling.</p>
+      <ul>
+        <li>Open files in appropriate mode (read/write/append); always close after use.</li>
+        <li>Read/write a single item (e.g., number) or entire lines/records.</li>
+        <li>Store data for later program use (persistent storage).</li>
+      </ul>
 
       <a class="back-top" href="#top">Back to top</a>
     </section>
 
     <section id="s9" class="section">
       <h2>9. Databases</h2>
-      <p>Content for databases.</p>
+      <ul>
+        <li>Structure: tables consist of records (rows) with fields (columns). Common data types: text/alphanumeric, character, Boolean, integer, real, date/time.</li>
+        <li>SQL basics:
+          <ul>
+            <li>SELECT fields FROM table WHERE condition ORDER BY field;</li>
+            <li>Aggregate functions: COUNT(*), SUM(field); often used with GROUP BY.</li>
+          </ul>
+        </li>
+        <li>Be able to predict the output of simple SQL queries.</li>
+      </ul>
 
       <a class="back-top" href="#top">Back to top</a>
     </section>
 
     <section id="s10" class="section">
       <h2>10. Boolean logic</h2>
-      <p>Content for Boolean logic.</p>
+      <ul>
+        <li>Logic gates: NOT, AND, OR, NAND, NOR, XOR (EOR). Understand their truth tables.</li>
+        <li>Combine up to three inputs to produce one output in simple combinational circuits.</li>
+        <li>Translate statements to logic expressions/circuits (no simplification required in the spec).</li>
+      </ul>
 
       <a class="back-top" href="#top">Back to top</a>
     </section>

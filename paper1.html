@@ -54,13 +54,54 @@
       <h2>1. Data representation</h2>
       
       <h3>1.1 Number systems</h3>
-      <p>Content for number systems.</p>
+      <ul>
+        <li>Binary (base 2), Denary/Decimal (base 10), Hexadecimal (base 16).</li>
+        <li>Place values: in binary each place doubles (1, 2, 4, 8, …). Highest number with B bits is 2^B − 1.</li>
+        <li>Units (binary prefixes): 1 byte = 8 bits; 1 KiB = 1024 bytes (often written as 1 KB in GCSE contexts); 1 MiB = 1024 KiB; 1 GiB = 1024 MiB. SI (kB/MB/GB) sometimes means ×1000.</li>
+        <li>Conversions:
+          <ul>
+            <li>Denary → Binary: repeatedly divide by 2, record remainders, read backwards; or use place-value subtraction. Pad with leading 0s to fixed width.</li>
+            <li>Binary → Hex: group bits into nibbles (4 bits) and map to single hex digits (0–9, A–F). Hex ↔ Denary via repeated ÷16 or place values.</li>
+          </ul>
+        </li>
+        <li>Negative integers: two’s complement (fixed width). Steps: invert all bits, then add 1. In 8-bit two’s complement the range is −128 to +127.</li>
+        <li>Binary shifts:
+          <ul>
+            <li>Logical left shift: drop MSB, insert 0 at LSB; multiplies unsigned values by 2 (overflow may occur).</li>
+            <li>Logical right shift: drop LSB, insert 0 at MSB; divides unsigned values by 2 (truncates).</li>
+            <li>Arithmetic right shift: preserves the sign bit (for signed two’s complement numbers).</li>
+          </ul>
+        </li>
+      </ul>
       
       <h3>1.2 Text, sound and images</h3>
-      <p>Content for text, sound and images.</p>
+      <ul>
+        <li>Text encoding:
+          <ul>
+            <li>ASCII: 7-bit (128 chars); Extended ASCII: 8-bit (256 chars).</li>
+            <li>Unicode: large character set (e.g., UTF-16 or UTF-8 encodings) supporting many languages and symbols.</li>
+            <li>Character set = all characters a system can represent; each character maps to a unique code.</li>
+          </ul>
+        </li>
+        <li>Bitmap images: made of pixels. Key terms: colour depth (bits per pixel), resolution (width × height), metadata (e.g., dimensions, colour model, author).</li>
+        <li>Vector images: shapes/formulae scaled without loss; good for logos and diagrams.</li>
+        <li>Sound:
+          <ul>
+            <li>Sampling converts analogue to digital at a sample rate (Hz) and sample resolution (bits/sample).</li>
+            <li>Higher rate/resolution → better quality and larger file size.</li>
+            <li>Uncompressed size (mono) ≈ sample rate × bits per sample × length (seconds). ×2 for stereo.</li>
+            <li>MIDI: instructions for instruments/synthesisers (not recorded audio); very small files.</li>
+          </ul>
+        </li>
+      </ul>
       
       <h3>1.3 Data storage and compression</h3>
-      <p>Content for data storage and compression.</p>
+      <ul>
+        <li>Compression aims: reduce storage and transfer time/usage; speed up downloads/streaming; reduce bandwidth and buffering.</li>
+        <li>Lossless: original data recoverable (e.g., PNG uses DEFLATE: LZ + Huffman; RLE). Required for text and source code.</li>
+        <li>Lossy: discards perceptually less-important data (e.g., JPEG, MP3/AAC). Much smaller files at the cost of some quality.</li>
+        <li>Images: lossy (JPEG, WebP lossy) vs lossless (PNG, GIF). Audio: lossy (MP3/AAC) vs lossless (FLAC/ALAC).</li>
+      </ul>
 
       <a class="back-top" href="#top">Back to top</a>
     </section>
@@ -69,13 +110,39 @@
       <h2>2. Data transmission</h2>
       
       <h3>2.1 Types and methods of data transmission</h3>
-      <p>Content for types and methods of data transmission.</p>
+      <ul>
+        <li>Serial vs parallel:
+          <ul>
+            <li>Serial sends bits one after another on one pair/line: lower crosstalk, reliable over longer distances, cheaper cabling.</li>
+            <li>Parallel sends multiple bits at once on multiple lines: higher throughput over very short distances but suffers from skew/interference.</li>
+          </ul>
+        </li>
+        <li>Direction: simplex (one-way), half‑duplex (both ways, not simultaneously), full‑duplex (both ways simultaneously).</li>
+        <li>USB: a serial bus with device detection and drivers.
+          <ul>
+            <li>On connect, voltage/state change triggers enumeration; OS loads a device driver to speak the device’s protocol.</li>
+            <li>Advantages: plug‑and‑play, standardised connectors/protocols, widely supported. Limits: cable length; older versions (e.g., USB 2.0) are half‑duplex; speed depends on version.</li>
+          </ul>
+        </li>
+        <li>Packet switching: data split into packets (header + payload + trailer). Packets can take different routes; improves resilience and utilisation but can increase latency/jitter.</li>
+      </ul>
       
       <h3>2.2 Methods of error detection</h3>
-      <p>Content for methods of error detection.</p>
+      <ul>
+        <li>Parity bit (even/odd): detects single‑bit errors in a byte; cannot detect all multi‑bit errors.</li>
+        <li>Parity block (2D parity): parity on rows and columns to locate a single erroneous bit.</li>
+        <li>Checksum: sender computes a value over a block; receiver recomputes and compares. Mismatch → request resend.</li>
+        <li>Echo check: receiver returns data; sender compares with original.</li>
+        <li>Check digit: algorithmic extra digit for identifiers (e.g., ISBN, barcodes) to detect entry errors.</li>
+        <li>Error control (ARQ): acknowledgements + timeout. If ACK not received in time or NACK received → retransmit.</li>
+      </ul>
       
       <h3>2.3 Encryption</h3>
-      <p>Content for encryption.</p>
+      <ul>
+        <li>Symmetric encryption: same secret key to encrypt/decrypt; fast, but key distribution is a challenge.</li>
+        <li>Asymmetric encryption: public/private key pair; encrypt with receiver’s public key; only receiver can decrypt with private key.</li>
+        <li>HTTPS uses TLS: combines certificates (public keys) with symmetric session keys for performance and security.</li>
+      </ul>
 
       <a class="back-top" href="#top">Back to top</a>
     </section>
@@ -84,16 +151,49 @@
       <h2>3. Hardware</h2>
       
       <h3>3.1 Computer architecture</h3>
-      <p>Content for computer architecture.</p>
+      <ul>
+        <li>Von Neumann CPU components: ALU, Control Unit (CU), Registers. Buses: address, data, control.</li>
+        <li>Key registers: PC (Program Counter), MAR, MDR, CIR, ACC.</li>
+        <li>Fetch‑Decode‑Execute cycle (simplified):
+          <ol>
+            <li>PC → MAR (address on address bus)</li>
+            <li>Memory → MDR (instruction on data bus)</li>
+            <li>MDR → CIR; PC increments</li>
+            <li>CU decodes; control signals orchestrate execution</li>
+          </ol>
+        </li>
+        <li>Performance factors: higher clock speed, more cores (parallelism with diminishing returns), larger/faster cache (reduces memory latency). Overclocking risks heat/instability.</li>
+      </ul>
       
       <h3>3.2 Input and output devices</h3>
-      <p>Content for input and output devices.</p>
+      <ul>
+        <li>Codes: barcodes vs QR. QR stores more data and has error correction (camera-readable); barcodes are simple and fast (scanners/lasers).</li>
+        <li>Keyboards: key press closes switch; scan codes mapped to characters (e.g., ASCII/Unicode).</li>
+        <li>Microphones: diaphragm/coil/magnet creates analogue signal → ADC samples to digital.</li>
+        <li>2D/3D scanners: 2D via CCD/CMOS sensor; 3D via multiple viewpoints (e.g., structured light, CT/MRI in medical).</li>
+        <li>Touchscreens: capacitive (multi‑touch, durable), resistive (stylus friendly), infrared (grid of beams, no top layer to wear).</li>
+        <li>Displays/projectors: LCD vs DLP trade‑offs (contrast, motion, lifespan). LEDs used as backlights or individual emitters (high efficiency).</li>
+        <li>Printers: inkjet (high quality photos, slower) vs laser (fast, high volume, text sharp). Sensors used for paper feed/positioning.</li>
+        <li>Actuators/loudspeakers: electromagnets drive movement/sound.</li>
+      </ul>
       
       <h3>3.3 Data storage</h3>
-      <p>Content for data storage.</p>
+      <ul>
+        <li>Secondary storage types:
+          <ul>
+            <li>Magnetic (HDD): platters, tracks/sectors, read/write heads.</li>
+            <li>Optical (CD/DVD/BD): pits and lands along a spiral track; laser reflectivity.</li>
+            <li>Solid state (flash/SSD): NAND/NOR memory, no moving parts, fast and durable.</li>
+          </ul>
+        </li>
+        <li>Virtual memory: extends RAM using secondary storage; excessive swapping causes thrashing and slowdowns.</li>
+      </ul>
       
       <h3>3.4 Network hardware</h3>
-      <p>Content for network hardware.</p>
+      <ul>
+        <li>NIC (Network Interface Card) with unique 48‑bit MAC address (hex). First 24 bits = manufacturer (OUI); last 24 bits = device identifier.</li>
+        <li>Switches forward frames based on MAC tables; routers forward packets between networks based on IP.</li>
+      </ul>
 
       <a class="back-top" href="#top">Back to top</a>
     </section>
@@ -102,10 +202,32 @@
       <h2>4. Software</h2>
       
       <h3>4.1 Types of software and interrupts</h3>
-      <p>Content for types of software and interrupts.</p>
+      <ul>
+        <li>Software types:
+          <ul>
+            <li>Application: end‑user tasks (e.g., word processors, browsers).</li>
+            <li>System: operating systems, device drivers.</li>
+            <li>Utility: backup, antivirus, compression, defragmentation, disk cleanup.</li>
+          </ul>
+        </li>
+        <li>Operating system responsibilities: user interface, file management, memory/process management, device/driver control, security and user accounts, platform for applications.</li>
+        <li>Firmware: software stored in non‑volatile memory to control hardware.</li>
+        <li>Interrupts: hardware/software signals that pause the current process; ISR/handler saves state, services event, restores state.</li>
+        <li>Buffers: temporary memory to handle speed mismatch between producer/consumer of data.</li>
+      </ul>
       
       <h3>4.2 Types of programming language, translators and integrated development environments (IDEs)</h3>
-      <p>Content for types of programming language, translators and IDEs.</p>
+      <ul>
+        <li>High‑level vs low‑level languages: HLLs are readable and portable; LLLs (assembly/machine) give fine control and can be smaller/faster.</li>
+        <li>Translators:
+          <ul>
+            <li>Compiler: translates whole program to executable; errors reported after compile; faster runtime.</li>
+            <li>Interpreter: translates and runs line‑by‑line; stops at first error; slower runtime.</li>
+            <li>Assembler: converts assembly to machine code.</li>
+          </ul>
+        </li>
+        <li>IDEs typically include: editor, runtime environment, debugger, diagnostics, auto‑completion, pretty‑printing, project management.</li>
+      </ul>
 
       <a class="back-top" href="#top">Back to top</a>
     </section>
@@ -114,13 +236,25 @@
       <h2>5. The internet and its uses</h2>
       
       <h3>5.1 The internet and the world wide web</h3>
-      <p>Content for the internet and the world wide web.</p>
+      <ul>
+        <li>Internet vs WWW: the Internet is the global network infrastructure; the World Wide Web is a service using HTTP(S) over the Internet to serve web pages.</li>
+        <li>URLs identify resources. HTTP vs HTTPS: HTTPS uses TLS to encrypt/authenticate.</li>
+        <li>Web browsers: render HTML/CSS/JS, manage history/tabs/bookmarks, cache resources, manage cookies.</li>
+        <li>DNS resolution: browser asks DNS to map domain → IP; recursive lookups if needed; result cached; browser then connects to the server’s IP.</li>
+        <li>Cookies: session (expire on close) and persistent (expire later). Uses: logins, preferences, shopping carts.</li>
+      </ul>
       
       <h3>5.2 Digital currency</h3>
-      <p>Content for digital currency.</p>
+      <ul>
+        <li>Digital currencies include cryptocurrencies (e.g., Bitcoin). They exist electronically only.</li>
+        <li>Blockchain: distributed, append‑only ledger of blocks containing transactions; each block references the previous block’s hash; tamper‑evident and time‑stamped.</li>
+      </ul>
       
       <h3>5.3 Cyber security</h3>
-      <p>Content for cyber security.</p>
+      <ul>
+        <li>Threats: brute‑force password guessing, interception/sniffing, DoS/DDoS, malware (virus, worm, Trojan, spyware, adware, ransomware), phishing, pharming, social engineering.</li>
+        <li>Protections: strong authentication (password policies, 2FA/biometrics), anti‑malware, firewalls, HTTPS/TLS, software updates/patching, careful URL checking, privacy settings, proxies/VPNs, backups.</li>
+      </ul>
 
       <a class="back-top" href="#top">Back to top</a>
     </section>
@@ -129,13 +263,25 @@
       <h2>6. Automated and emerging technologies</h2>
       
       <h3>6.1 Automated systems</h3>
-      <p>Content for automated systems.</p>
+      <ul>
+        <li>Typical loop: sensors → microprocessor/controller → control algorithm → actuators; feedback adjusts behaviour.</li>
+        <li>Applications: industry/robotics, transport, agriculture, weather stations, gaming/AR/VR, lighting, scientific experiments.</li>
+        <li>Pros: accuracy, efficiency, safety, 24/7 operation. Cons: upfront cost, specialist maintenance, integration challenges.</li>
+      </ul>
       
       <h3>6.2 Robotics</h3>
-      <p>Content for robotics.</p>
+      <ul>
+        <li>Independent vs dependent robots (autonomous vs under human/computer control).</li>
+        <li>Advantages: work in hazardous environments, consistent quality, high productivity, long‑term cost savings.</li>
+        <li>Disadvantages: initial cost, need for experts, potential job displacement, difficulty with unstructured tasks.</li>
+      </ul>
       
       <h3>6.3 Artificial intelligence</h3>
-      <p>Content for artificial intelligence.</p>
+      <ul>
+        <li>Narrow AI performs specific tasks (e.g., image classification); General AI would match human versatility (not currently realised).</li>
+        <li>Expert systems: user interface, knowledge base, rules base, inference engine (reasoning), and explanation facility.</li>
+        <li>Machine learning: learns from data to improve performance without explicit rule programming.</li>
+      </ul>
 
       <a class="back-top" href="#top">Back to top</a>
     </section>
